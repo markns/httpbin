@@ -1074,7 +1074,7 @@ def digest_auth(qop=None, user='user', passwd='passwd', algorithm='MD5', stale_a
 
 @app.route('/delay/<delay>')
 def delay_response(delay):
-    """"Returns a delayed response (max of 10 seconds).
+    """"Returns a delayed response.
     ---
     tags:
       - Dynamic data
@@ -1088,9 +1088,7 @@ def delay_response(delay):
       200:
         description: A delayed response.
     """
-    delay = min(float(delay), 10)
-
-    time.sleep(delay)
+    time.sleep(float(delay))
 
     return jsonify(get_dict(
         'url', 'args', 'form', 'data', 'origin', 'headers', 'files'))
